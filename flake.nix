@@ -102,6 +102,7 @@
           packages = [
             python
             pkgs.uv
+            pkgs.portaudio
           ];
           env =
             {
