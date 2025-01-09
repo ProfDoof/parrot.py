@@ -103,6 +103,7 @@
             python
             pkgs.uv
             pkgs.portaudio
+            pkgs.xorg.xhost
           ];
           env =
             {
