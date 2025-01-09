@@ -1,0 +1,27 @@
+[project]
+name = "parrot"
+version = "0.0.0"
+description = "Generate a model for use recognizing sounds"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pyaudio",
+    "numpy"
+    "pandas"
+    "matplotlib"
+    "scikit-learn"
+    "python_speech_features"
+    "pyautogui"
+    "joblib"
+    "torch"
+    "audiomentations"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6.7",
+]
