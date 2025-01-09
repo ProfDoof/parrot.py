@@ -63,32 +63,26 @@
         # It's using https://pyproject-nix.github.io/pyproject.nix/build.html
       };
 
-      # This example is only using x86_64-linux
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
-      # Use Python 3.12 from nixpkgs
-      python = pkgs.python312;
-
-      # Construct package set
-      pythonSet =
-        # Use base package set from pyproject.nix builders
-        (pkgs.callPackage pyproject-nix.build.packages {
-          inherit python;
-        }).overrideScope
-          (
-            lib.composeManyExtensions [
-              pyproject-build-systems.overlays.default
-              overlay
-              pyprojectOverrides
-            ]
-          );
-
     in
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
+        python = pkgs.python310Full;
 
-        python = pkgs.python310;
+
+        # Construct package set
+        pythonSet =
+          # Use base package set from pyproject.nix builders
+          (pkgs.callPackage pyproject-nix.build.packages {
+            inherit python;
+          }).overrideScope
+            (
+              lib.composeManyExtensions [
+                pyproject-build-systems.overlays.default
+                overlay
+                pyprojectOverrides
+              ]
+            );
 
         nativeBuildInputs = with pkgs; [
           python
