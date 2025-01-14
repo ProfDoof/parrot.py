@@ -14,7 +14,8 @@ dependencies = [
     "pyautogui",
     "joblib",
     "torch",
-    "audiomentations"
+    "audiomentations",
+    "seaborn"
 ]
 
 [dependency-groups]
